@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Top Menu MNU001</title>
+<link rel="stylesheet" th:href="@{/css/test.css}" />
+
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+  <div th:include="navbar"></div>
+
+
+	<div class="main_contents">
+    <div id="sub_content">
+			<form class="row g-3 mt-3 ms-2" th:action="@{/user/userHistorySearch}" th:method="post">
+			<th:block th:if="${session.a!=null}">
+			<h4 th:text=${error}></h4>
+				<div class="col-auto">
+					<label for="id" class="visually-hidden">User Id</label>
+					<input type="text" class="form-control1" id="id" name="id"
+						placeholder="User ID">
+				</div>
+				<div class="col-auto">
+					<label for="inputPassword2" class="visually-hidden">User
+						Name</label> <input type="text" class="form-control1" id="name" name="name"
+						placeholder="User Name">
+				</div>
+				
+
+				<div class="col-auto">
+					<button type="submit" class="btn btn-primary mb-3">Search</button>
+				</div>
+
+				<div class="col-auto">
+					<button type="reset" class="btn btn-danger mb-3">Reset</button>
+				</div>
+				
+			</th:block>
+			</form>
+
+			<table class="table table-hover" id="stduentTable">
+				<thead>
+					<tr>
+
+						<th scope="col">ID</th>
+						<th scope="col">User ID</th>
+						<th scope="col">User Name</th>
+						<th scope="col">Details</th>
+						<th scope="col">History Time</th>
+
+					</tr>
+				</thead>
+				<tbody th:each="user : ${users}">
+					<tr>
+						<td th:text="${user.id}"></td>
+						<td th:text="${user.user.id}"></td>
+						<td th:text="${user.user.name}"></td>
+						<td th:text="${user.details}"></td>
+						<td th:text="${user.updateTime}"></td>
+						
+						<td><button type="button" class="btn btn-secondary mb-3 delete-btn" th:id="${user.id}"
+								data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button></td>
+
+					
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">History
+										Deletion</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+
+									<h5 style="color: rgb(127, 209, 131);">Are you sure want	to delete !</h5>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-success col-md-2"
+										data-bs-dismiss="modal"
+										 id="delete-modal-btn">Ok</button>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+	 
+        <script>
+            var userId;
+            document.querySelectorAll(".delete-btn").forEach(element => {
+                element.onclick = (e) => {
+                    userId = element.id;
+                }
+            })
+            document.getElementById("delete-modal-btn").onclick = (e) => {
+                window.location.href = "/user/deleteUserHistory/" + userId;
+            }
+        </script>
+	<div th:include="footer"></div>

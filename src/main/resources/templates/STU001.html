@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Top Menu MNU001</title>
+<link rel="stylesheet" th:href="@{/css/test.css}" />
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+  <div th:include="navbar"></div>
+    
+    
+      <div class="main_contents">
+    <div id="sub_content">
+    
+   <form th:action="@{/user/studentCreate}" th:option="${student}" th:method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+
+  <h2 class="col-md-6 offset-md-2 mb-5 mt-4">Student Registration</h2>
+
+  <div class="row mb-4">
+    <div class="col-md-2"></div>
+    <label for="name" class="col-md-2 col-form-label">Name</label>
+    
+    <div class="col-md-4">
+      <small id="nameError" class="validation-error"></small>
+      <input type="text" class="form-control1" id="name" name="name" placeholder="Enter your name">
+    
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-2"></div>
+    <label for="dob" class="col-md-2 col-form-label">DOB</label>
+    <div class="col-md-4">
+       <small id="dobError" class="validation-error"></small>
+      <input type="date" class="form-control1" id="dob" name="dob">
+   
+    </div>
+  </div>
+
+  <script>
+    // Get the date input element
+    var dobInput = document.getElementById('dob');
+
+    // Set the minimum and maximum dates
+    var minDate = new Date('1890-01-01').toISOString().split('T')[0];
+    var maxDate = new Date('2015-01-01').toISOString().split('T')[0];
+    dobInput.setAttribute('min', minDate);
+    dobInput.setAttribute('max', maxDate);
+  </script>
+
+  <fieldset class="row mb-4">
+    <div class="col-md-2"></div>
+    <legend class="col-form-label col-md-2 pt-0">Gender</legend>
+    <div class="col-md-4">
+       <small id="genderError" class="validation-error"></small><br>
+      <div class="form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" id="gender" value="Male">
+        <label class="form-check-label" for="gridRadios1">
+          Male
+        </label>
+      </div>
+      <div class="form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" id="gender" value="Female">
+        <label class="form-check-label" for="gridRadios2">
+          Female
+        </label>
+      </div>
+   
+    </div>
+  </fieldset>
+
+  <div class="row mb-4">
+    <div class="col-md-2"></div>
+    <label for="phone" class="col-md-2 col-form-label">Phone</label>
+    <div class="col-md-4">
+    <small id="phoneError" class="validation-error"></small>
+      <input type="text" class="form-control1" id="phone" name="phone" placeholder="Enter phone no">
+      
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-2"></div>
+    <label for="education" class="col-md-2 col-form-label">Education</label>
+    <div class="col-md-4">
+         <small id="educationError" class="validation-error"></small>
+      <select class="form-control1" aria-label="Education" id="education" name="education">
+        <option selected value="Bachelor of Information Technology">Bachelor of Information Technology</option>
+        <option value="Diploma in IT">Diploma in IT</option>
+        <option value="Bachelor of Computer Science">Bachelor of Computer Science</option>
+      </select>
+ 
+    </div>
+  </div>
+
+  <fieldset class="row mb-4">
+    <div class="col-md-2"></div>
+    <legend class="col-form-label col-md-2 pt-0">Attend and Fees</legend>
+    <div class="col-md-4">
+     <small  id="courseError" class="validation-error"></small><br>
+      <th:block th:each="course : ${courses}">
+      
+        <div class="form-check-inline col-md-2">
+          <input class="form-check-input" type="checkbox" id="courseName" name="courseName" th:value="${course.courseName}" multiple="multiple">
+          <label class="form-check-label">
+            [[${course.courseName}]]     [[${course.fees}]]
+          </label>
+        </div>
+      </th:block>
+
+    </div>
+   
+  </fieldset>
+
+  <div class="row mb-4">
+    <div class="col-md-2"></div>
+    <label for="photo" class="col-md-2 col-form-label">Photo</label>
+    <div class="col-md-4">
+    <small id="photoError" class="validation-error"></small>
+      <input type="file" class="form-control1" id="photo" name="file">
+      
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <button type="reset" class="btn btn-danger">Reset</button>
+      <button type="button" class="btn btn-secondary col-md-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Student Registration</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h5 style="color: rgb(127, 209, 131);">Are you sure you want to register?</h5>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success col-md-2" data-bs-dismiss="modal">Ok</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>
+</div>
+</div>
+<script>
+  function validateForm() {
+    var name = document.getElementById("name").value;
+    var dob = document.getElementById("dob").value;
+    var gender = document.querySelector('input[name="gender"]:checked');
+    var phone = document.getElementById("phone").value;
+    var education = document.getElementById("education").value;
+    var course = document.querySelector('input[name="courseName"]:checked');
+    var photo = document.getElementById("photo").value;
+
+    var nameError = document.getElementById("nameError");
+    var dobError = document.getElementById("dobError");
+    var genderError = document.getElementById("genderError");
+    var phoneError = document.getElementById("phoneError");
+    var educationError = document.getElementById("educationError");
+    var courseError = document.getElementById("courseError");
+    var photoError = document.getElementById("photoError");
+
+    // Reset previous error messages
+    nameError.innerHTML = "";
+    dobError.innerHTML = "";
+    genderError.innerHTML = "";
+    phoneError.innerHTML = "";
+    educationError.innerHTML = "";
+    courseError.innerHTML = "";
+    photoError.innerHTML = "";
+
+    // Validate each field
+    var isValid = true;
+
+    if (name === "") {
+      nameError.innerHTML = "Please enter your name";
+      isValid = false;
+    }
+
+    if (dob === "") {
+      dobError.innerHTML = "Please enter your date of birth";
+      isValid = false;
+    }
+
+    if (!gender) {
+      genderError.innerHTML = "Please select your gender";
+      isValid = false;
+    }
+
+    if (phone === "") {
+      phoneError.innerHTML = "Please enter your phone number";
+      isValid = false;
+    }
+
+    if (education === "") {
+      educationError.innerHTML = "Please select your education";
+      isValid = false;
+    }
+
+    if (!course) {
+      courseError.innerHTML = "Please select at least one course";
+      isValid = false;
+    }
+
+    if (photo === "") {
+      photoError.innerHTML = "Please select a photo";
+      isValid = false;
+    }
+
+    return isValid;
+  }
+</script>
+<div th:include="footer"></div>
+

@@ -1,0 +1,219 @@
+@charset "ISO-8859-1";
+* {box-sizing: border-box;}
+*:hover, *:focus {outline:0}
+html {height: 100%;}
+body {
+  position: relative;
+  height: 100%;
+  background: rgba(0,0,0,.3);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  color:#777;
+}
+
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    font-family: "Roboto", sans-serif;
+    /* background-color: rgb(154, 255, 133); */
+    background-image: #808080;
+    overflow-x: hidden;
+    padding-top: 20px;
+    float: left;
+  }
+   .sidenav a, .dropdown-btn,.div.a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+    color: #1F6357;
+    display: block;
+    border: none;
+    background: none;
+    width: 400px;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  /* On mouse-over */
+  .sidenav a:hover, .dropdown-btn:hover {
+    color: #EE9A4D;
+  }
+    
+button, select, input {
+  font-family: 'Roboto', sans-serif;
+  font-size: 17px;
+}
+.quiz-window {
+  position: absolute;
+  left:50; right:0;
+  top: 0;
+  margin: auto;
+  width: 1100px;
+  height: 130%;
+  border-radius: 4px;
+  background:
+    linear-gradient(
+    rgba(35,43,85,0.75),
+    rgba(35,43,85,0.95)),
+    url(https://dl.dropboxusercontent.com/u/22006283/preview/codepen/clouds-cloudy-forest-mountain.jpg) no-repeat center center;
+  overflow: hidden;
+}
+.quiz-window-header {
+  padding: 20px 15px;
+  text-align:center;
+  position: relative;
+}
+.quiz-window-title {
+  font-size: 26px;
+}
+.quiz-window-close {
+  position: absolute;
+  top:20px;
+  right:20px;
+  padding:0;
+  background:none;
+  border:0;
+  width: 30px;
+  height: 30px;
+  font-size: 60px;
+  font-weight: 100;
+  line-height: 24px;
+  color: #777;
+  cursor:pointer;
+}
+.quiz-window-body {
+  background-color: 
+    linear-gradient(
+    rgba(35,43,85,0.75),
+    rgba(35,43,85,0.95)),
+    url(https://dl.dropboxusercontent.com/u/22006283/preview/codepen/clouds-cloudy-forest-mountain.jpg) no-repeat center center;
+}
+.guiz-awards-row {
+  margin:0;
+  padding: 10px 40px;
+  list-style: none;
+}
+.guiz-awards-row:after {
+  content: '';
+  display: table;
+  clear:both;
+}
+.guiz-awards-row-even {
+  background-color:  #808080;
+}
+.guiz-awards-row li {
+  display:inline-block;
+  vertical-align: top;
+  float: left;
+}
+.guiz-awards-header {
+  text-align: center;
+  padding: 20px 40px;
+}
+.guiz-awards-star, .guiz-awards-track, .guiz-awards-time,guiz-awards-title,
+.guiz-awards-header-star, .guiz-awards-header-track, .guiz-awards-header-time{
+  min-width: 54px;
+  text-align: center;
+  width: 16%;
+}
+.guiz-awards-title {
+  width: 40%;
+  min-width: 160px;
+  font-size: 20px;
+  font-weight: normal;
+  padding-top: 3px;
+}
+.guiz-awards-header-title {
+  width: 40%;
+  min-width: 160px;
+}
+.guiz-awards-subtitle,.guiz-awards-header-title,
+.guiz-awards-header-track,.guiz-awards-header-time,.quiz-window-title {
+  color: #000000;
+  font-size: 20px;
+  
+  font-weight: 400;
+}
+.guiz-awards-track, .guiz-awards-time {
+  width: 22%;
+  min-width: 80px;
+    color:#000000;
+  font-size: 20px;
+  line-height: 45px
+}
+.guiz-awards-header-track, .guiz-awards-header-time {
+	color:#000000;
+  width: 22%;
+  min-width: 80px;
+}
+.guiz-awards-track .null, .guiz-awards-time .null,.guiz-awards-track , .guiz-awards-time .{
+  color:#000000;
+}
+.star {
+  display:block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #bdc2c1;
+  background: #d6d6d6;  
+}
+.goldstar {
+  border-color: #4c8193;
+  background: #14b0bf;  
+}
+.silverstar {
+  border-color: #557e3a;
+  background: #66931f;  
+}
+.bronzestar {
+  border-color: #998247;
+  background: #aa984b;  
+}
+.rhodiumstar {
+  border-color: #743a7f;
+  background: #a0409d;
+}
+.platinumstar {
+  border-color: #10393b;
+  background: #2b5770;
+}
+
+.guiz-awards-buttons {
+  background: 
+    linear-gradient(
+    rgba(35,43,85,0.75),
+    rgba(35,43,85,0.95)),
+    url(https://dl.dropboxusercontent.com/u/22006283/preview/codepen/clouds-cloudy-forest-mountain.jpg) no-repeat center center;
+  text-align: center;
+  padding: 20px 0;
+}
+.guiz-awards-but-back {
+  display:inline-block;
+  background: none;
+  border: 1px solid #61a3e5;
+  border-radius: 21px;
+  padding: 7px 40px 7px 20px;
+  color: #61a3e5;
+  font-size: 17px;
+  cursor:pointer;
+  transition: all .3s ease;
+}
+
+.guiz-awards-but-back:hover {
+  background: #61a3e5;
+  color: #fff;
+}
+
+.guiz-awards-but-back i {
+  font-size: 26px;
+  line-height: 17px;
+  margin-right: 20px;
+  position: relative;
+  top: 2px;
+}

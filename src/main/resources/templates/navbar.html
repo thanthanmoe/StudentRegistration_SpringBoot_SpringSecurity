@@ -1,0 +1,84 @@
+   <div id="sidenav">
+        <div class="container">
+            <div class=row>        
+                <div class="col-md-5 ">
+            <a href="MNU001.html"><h3></h3></a>
+        </div>  
+        <div class="col-md-6">
+            <p></p>
+            <p> </p>
+        </div>  
+        <div class="col-md-1" >
+            
+        </div>        
+    </div>
+</div>
+
+</div>
+  <a th:href="@{/user/updateUser/{userId}(userId=${session.LoginUserId})}">
+    	   <img th:src="@{'/upload/'+${session.LoginImage}}" alt="..." class="img"
+								style="width: 70px; height: 70px; border-radius: 45%;">
+   </a>
+
+         <a  th:href="@{/logout}" class="btnb" id="log">Logout</a>
+        <div class="sidenav">
+      
+        <a>
+  <p style="color: #7E3517" th:text="${session.LoginRole} + ' : ' + ${session.LoginName}"></p>
+
+
+        </a>
+
+
+
+
+
+			<a>
+			<p style="color: #7E3517">
+				Current Date: <span
+					th:text="${#dates.format(#dates.createNow(), 'yy.MM.dd')}"></span>
+			</p>
+		</a>
+
+
+
+		<button class="dropdown-btn">
+                Class Management <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-container">
+		<a th:href="@{/admin/course}" th:if="${session.a!=null}">Course Registration</a>
+
+
+		<a th:href="@{/admin/allCourse}"  th:if="${session.a!=null}">Course Management</a>
+      
+    	<th:block th:with="u=${session.rId}">
+    	
+    <a th:href="@{/user/student}">Student Registration</a>
+</th:block>
+
+
+
+
+                <a th:href="@{/user/allStudent}"  >Student Search</a>
+                 <a th:href="@{/studentHistory/allStudentHistory}" th:if="${session.a!=null}"><p style="color: #7E3517">Student History</p></a>
+            </div>
+            <a th:href="@{/user/allUser}" ><p style="color: #7E3517">User Management</p></a>
+             <a th:href="@{/user/allUserHistory}"><p style="color: #7E3517">User Detail History</p></a>
+        </div>
+       
+        <script>
+            /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+            var dropdown = document.getElementsByClassName("dropdown-btn");
+            var i;
+            for (i = 0; i < dropdown.length; i++) {
+                dropdown[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var dropdownContent = this.nextElementSibling;
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                });
+            }
+        </script>
